@@ -111,8 +111,9 @@ Desafio_Tecnico-Api_Gerenciamento/
    ```bash
    pytest tests/
 2. O que os testes cobrem:
-   -CRUD das tarefas (criação, leitura, atualização, exclusão).
-   -Autenticação JWT.
+   
+      CRUD das tarefas (criação, leitura, atualização, exclusão).
+      Autenticação JWT.
 
 ---
 
