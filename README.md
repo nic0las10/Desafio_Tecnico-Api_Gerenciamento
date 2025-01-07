@@ -1,66 +1,139 @@
+# **API de Gerenciamento de Tarefas**
 
+Uma API robusta e escalável para gerenciamento de tarefas (To-Do List), desenvolvida com **FastAPI**. O projeto segue boas práticas de desenvolvimento, como autenticação JWT, validação de dados com Pydantic, documentação automática e testes unitários com Pytest.
 
-# API de Lista de Tarefas
+## **Objetivo**
+Fornecer uma API que permita o gerenciamento de tarefas de maneira eficiente e segura, atendendo às seguintes funcionalidades:
+- Criar, listar, atualizar e excluir tarefas.
+- Visualizar uma tarefa específica pelo ID.
+- Autenticação com JWT para proteger os endpoints.
 
-Este projeto é uma API de gerenciamento de tarefas, desenvolvida como parte de um desafio técnico. A API foi construída usando **FastAPI** e possui funcionalidade CRUD para gerenciar tarefas, além de autenticação JWT.
+---
 
-## Principais Funcionalidades
-- Criar uma nova tarefa.
-- Listar todas as tarefas.
-- Atualizar uma tarefa existente.
-- Excluir uma tarefa.
-- Visualizar uma tarefa específica por ID.
+## **Funcionalidades**
 
-## Tecnologias Utilizadas
-- **Python 3.10**
+### **Endpoints Principais**
+| Método | Endpoint         | Descrição                          |
+|--------|------------------|------------------------------------|
+| POST   | `/login`         | Autenticação e geração de token JWT. |
+| POST   | `/tarefas`       | Criar uma nova tarefa.             |
+| GET    | `/tarefas`       | Listar todas as tarefas.           |
+| GET    | `/tarefas/{id}`  | Obter uma tarefa pelo ID.          |
+| PUT    | `/tarefas/{id}`  | Atualizar uma tarefa existente.    |
+| DELETE | `/tarefas/{id}`  | Excluir uma tarefa.                |
+
+### **Modelo de Tarefa**
+Cada tarefa contém os seguintes campos:
+- **id**: Identificador único (inteiro, autoincrementado).
+- **titulo**: Título da tarefa (string, obrigatório).
+- **descricao**: Descrição da tarefa (string, opcional).
+- **estado**: Estado da tarefa (string, obrigatório: "pendente", "em andamento", "concluída").
+- **data_criacao**: Data de criação (gerada automaticamente).
+- **data_atualizacao**: Data da última atualização (gerada automaticamente).
+
+---
+
+## **Tecnologias Utilizadas**
+- **Python 3.10**: Linguagem de programação.
 - **FastAPI**: Framework para construção de APIs RESTful.
-- **SQLModel**: ORM para integração com banco de dados.
-- **SQLite**: Banco de dados relacional.
-- **Uvicorn**: Servidor ASGI para executar a aplicação.
+- **SQLModel**: ORM para integração com o banco de dados.
+- **SQLite**: Banco de dados leve e eficiente.
+- **Uvicorn**: Servidor ASGI para rodar a aplicação.
+- **Pytest**: Framework para testes.
+- **JWT**: Autenticação segura.
 - **Python-dotenv**: Gerenciamento de variáveis de ambiente.
 
-## Instalação
+---
+
+## **Instalação e Configuração**
+
+### **Pré-requisitos**
+- Python 3.10 instalado.
+- Gerenciador de pacotes `pip`.
+
+### **Passos para Configuração**
 1. Clone o repositório:
    ```bash
-   [git clone  (https://github.com/nic0las10/Desafio_Tecnico-Api_Gerenciamento.git)
-2. Navegue até o diretório do projeto:
-   ```bash
+   git clone https://github.com/nic0las10/Desafio_Tecnico-Api_Gerenciamento.git
    cd Desafio_Tecnico-Api_Gerenciamento
-3. Crie um ambiente virtual:
-   ```bash
+2. Crie e ative o ambiente virtual:
+    ```bash
    python -m venv venv
-4. Ative o ambiente virtual:
-   - No Windows: `venv\Scripts\activate`
-   - No macOS/Linux: `source venv/bin/activate`
-5. Instale as dependências necessárias:
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+3. Instale as dependências:
    ```bash
    pip install -r requirements.txt
-6. Crie um arquivo `.env` no diretório raiz e adicione as seguintes variáveis de ambiente:
-   ```
+4. Crie o arquivo .env no diretório raiz e adicione as variáveis de ambiente:
+    ```env
    DATABASE_URL=sqlite:///./database.db
-   JWT_SECRET_KEY=your_secret_key
-   JWT_ALGORITHM=HS256
-7. Inicie o servidor de desenvolvimento:
+   SECRET_KEY=(chave no .env.exemple )
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+5. Inicialize o banco de dados:
    ```bash
-   uvicorn main:app --reload
+   python -m app.database
+6. Inicie o servidor:
+    ```bash
+    uvicorn app.main:app --reload
+  Acesse a documentação interativa:
 
-## Uso
-Uma vez que o servidor esteja em execução, você pode acessar a documentação da API em `http://localhost:8000/docs`. A documentação fornece informações sobre os endpoints disponíveis, esquemas de requisição/resposta e requisitos de autenticação.
+-Swagger: http://127.0.0.1:8000/docs
+-Redoc: http://127.0.0.1:8000/redoc
 
-## API
-A API fornece os seguintes endpoints:
+---
 
-- `POST /tarefas`: Criar uma nova tarefa.
-- `GET /tarefas`: Listar todas as tarefas.
-- `GET /tasks/{task_id}`: Recuperar uma tarefa específica por ID.
-- `PUT /tarefas/{tarefas_id}`: Atualizar uma tarefa existente.
-- `DELETE /tarefas/{tarefas_id}`: Excluir uma tarefa.
+## **Estrutura do Projeto**
+
+Desafio_Tecnico-Api_Gerenciamento/
+│
+├── app/
+│   ├── __init__.py        # Inicialização do módulo
+│   ├── main.py            # Entrypoint da aplicação
+│   ├── auth.py            # Funções de autenticação (JWT)
+│   ├── database.py        # Configuração do banco de dados
+│   ├── models.py          # Modelos SQLAlchemy/SQLModel
+│   ├── schemas.py         # Schemas para validação (Pydantic)
+│
+├── tests/                 # Testes unitários com Pytest
+│   ├── test_tarefas.py
+│
+├── .env                   # Variáveis de ambiente
+├── requirements.txt       # Dependências do projeto
+├── README.md              # Documentação do projeto
+└── database.db            # Banco de dados SQLite
 
 
-## Testes
-Para rodar os testes, execute o seguinte comando:
-```bash
-pytest tests/
-```
+---
+
+## **Testes Unitários**
+
+1. Execute os testes unitários:
+   ```bash
+   pytest tests/
+2. O que os testes cobrem:
+   -CRUD das tarefas (criação, leitura, atualização, exclusão).
+   -Autenticação JWT.
+
+---
+
+## **Requisitos Opcionais Implementados**
+
+   -CRUD das tarefas (criação, leitura, atualização, exclusão).
+   -Autenticação JWT.
+
+---
+
+## **Licença**
+
+   -Este projeto está licenciado sob a licença MIT.
 
 
+
+
+
+
+
+
+
+    
+   
