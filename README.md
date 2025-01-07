@@ -50,11 +50,11 @@ Uma vez que o servidor esteja em execução, você pode acessar a documentação
 ## API
 A API fornece os seguintes endpoints:
 
-- `POST /tasks`: Criar uma nova tarefa.
-- `GET /tasks`: Listar todas as tarefas.
+- `POST /tarefas`: Criar uma nova tarefa.
+- `GET /tarefas`: Listar todas as tarefas.
 - `GET /tasks/{task_id}`: Recuperar uma tarefa específica por ID.
-- `PUT /tasks/{task_id}`: Atualizar uma tarefa existente.
-- `DELETE /tasks/{task_id}`: Excluir uma tarefa.
+- `PUT /tarefas/{tarefas_id}`: Atualizar uma tarefa existente.
+- `DELETE /tarefas/{tarefas_id}`: Excluir uma tarefa.
 
 
 ## Testes
