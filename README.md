@@ -1,67 +1,66 @@
-# To-Do List API
 
-This project is a task management API, developed as part of a technical challenge. The API was built using **FastAPI** and has CRUD functionality to manage tasks, as well as JWT authentication.
 
-## Main Features
-- Create a new task.
-- List all tasks.
-- Update an existing task.
-- Delete a task.
-- View a specific task by ID.
+# API de Lista de Tarefas
 
-## Technologies Used
+Este projeto é uma API de gerenciamento de tarefas, desenvolvida como parte de um desafio técnico. A API foi construída usando **FastAPI** e possui funcionalidade CRUD para gerenciar tarefas, além de autenticação JWT.
+
+## Principais Funcionalidades
+- Criar uma nova tarefa.
+- Listar todas as tarefas.
+- Atualizar uma tarefa existente.
+- Excluir uma tarefa.
+- Visualizar uma tarefa específica por ID.
+
+## Tecnologias Utilizadas
 - **Python 3.10**
-- **FastAPI**: Framework for building RESTful APIs.
-- **SQLModel**: ORM for database integration.
-- **SQLite**: Relational database.
-- **Uvicorn**: ASGI server to run the application.
-- **Python-dotenv**: Environment variable management.
+- **FastAPI**: Framework para construção de APIs RESTful.
+- **SQLModel**: ORM para integração com banco de dados.
+- **SQLite**: Banco de dados relacional.
+- **Uvicorn**: Servidor ASGI para executar a aplicação.
+- **Python-dotenv**: Gerenciamento de variáveis de ambiente.
 
-## Installation
-1. Clone the repository:
+## Instalação
+1. Clone o repositório:
    ```bash
    git clone https://github.com/SEU_USUARIO/Desafio_Tecnico-Api_Gerenciamento.git
-2. Navigate to the project directory:
+2. Navegue até o diretório do projeto:
    ```bash
    cd Desafio_Tecnico-Api_Gerenciamento
-3. Create a virtual environment:
+3. Crie um ambiente virtual:
    ```bash
    python -m venv venv
-4. Activate the virtual environment:
-   - On Windows: `venv\Scripts\activate`
-   - On macOS/Linux: `source venv/bin/activate`
-5. Install the required dependencies:
+4. Ative o ambiente virtual:
+   - No Windows: `venv\Scripts\activate`
+   - No macOS/Linux: `source venv/bin/activate`
+5. Instale as dependências necessárias:
    ```bash
    pip install -r requirements.txt
-6. Create a `.env` file in the root directory and add the following environment variables:
+6. Crie um arquivo `.env` no diretório raiz e adicione as seguintes variáveis de ambiente:
    ```
    DATABASE_URL=sqlite:///./database.db
    JWT_SECRET_KEY=your_secret_key
    JWT_ALGORITHM=HS256
-7. Start the development server:
+7. Inicie o servidor de desenvolvimento:
    ```bash
    uvicorn main:app --reload
 
-## Usage
-Once the server is running, you can access the API documentation at `http://localhost:8000/docs`. The documentation provides information about the available endpoints, request/response schemas, and authentication requirements.
+## Uso
+Uma vez que o servidor esteja em execução, você pode acessar a documentação da API em `http://localhost:8000/docs`. A documentação fornece informações sobre os endpoints disponíveis, esquemas de requisição/resposta e requisitos de autenticação.
 
 ## API
-The API provides the following endpoints:
+A API fornece os seguintes endpoints:
 
-- `POST /tasks`: Create a new task.
-- `GET /tasks`: List all tasks.
-- `GET /tasks/{task_id}`: Retrieve a specific task by ID.
-- `PUT /tasks/{task_id}`: Update an existing task.
-- `DELETE /tasks/{task_id}`: Delete a task.
+- `POST /tasks`: Criar uma nova tarefa.
+- `GET /tasks`: Listar todas as tarefas.
+- `GET /tasks/{task_id}`: Recuperar uma tarefa específica por ID.
+- `PUT /tasks/{task_id}`: Atualizar uma tarefa existente.
+- `DELETE /tasks/{task_id}`: Excluir uma tarefa.
 
-## Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
-
-## Testing
-To run the tests, execute the following command:
+## Testes
+Para rodar os testes, execute o seguinte comando:
 ```bash
 pytest tests/
 ```
+
+Espero que isso ajude a preparar seu README para a entrevista. Se precisar de mais alguma coisa, estarei aqui para ajudar! Boa sorte na sua entrevista! 🍀
