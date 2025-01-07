@@ -22,7 +22,7 @@ Este projeto é uma API de gerenciamento de tarefas, desenvolvida como parte de 
 ## Instalação
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/SEU_USUARIO/Desafio_Tecnico-Api_Gerenciamento.git
+   [git clone  (https://github.com/nic0las10/Desafio_Tecnico-Api_Gerenciamento.git)
 2. Navegue até o diretório do projeto:
    ```bash
    cd Desafio_Tecnico-Api_Gerenciamento
