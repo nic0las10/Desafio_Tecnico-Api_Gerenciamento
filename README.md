@@ -112,16 +112,16 @@ Desafio_Tecnico-Api_Gerenciamento/
    pytest tests/
 2. O que os testes cobrem:
    
-      CRUD das tarefas (criação, leitura, atualização, exclusão).
-      Autenticação JWT.
+-CRUD das tarefas (criação, leitura, atualização, exclusão).
+-Autenticação JWT.
 
 ---
 
 ## **Requisitos Opcionais Implementados**
 
-   -CRUD das tarefas (criação, leitura, atualização, exclusão).
-   -Autenticação JWT.
-
+-Utilização de SQLite como banco de dados.
+-Autenticação JWT para proteger os endpoints.
+-Documentação interativa com Swagger e Redoc
 ---
 
 ## **Licença**
