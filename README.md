@@ -119,9 +119,11 @@ Desafio_Tecnico-Api_Gerenciamento/
 
 ## **Requisitos Opcionais Implementados**
 
+- **Documentação interativa com Swagger e Redoc.
+- Autenticação JWT para proteger os endpoints.
 -Utilização de SQLite como banco de dados.
--Autenticação JWT para proteger os endpoints.
--Documentação interativa com Swagger e Redoc
+
+
 ---
 
 ## **Licença**
