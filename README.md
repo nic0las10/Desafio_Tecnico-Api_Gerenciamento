@@ -84,6 +84,7 @@ Cada tarefa contém os seguintes campos:
 
 ## **Estrutura do Projeto**
 
+```bash
 Desafio_Tecnico-Api_Gerenciamento/
 │
 ├── app/
