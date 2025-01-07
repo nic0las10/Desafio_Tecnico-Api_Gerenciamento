@@ -63,4 +63,4 @@ Para rodar os testes, execute o seguinte comando:
 pytest tests/
 ```
 
-Espero que isso ajude a preparar seu README para a entrevista. Se precisar de mais alguma coisa, estarei aqui para ajudar! Boa sorte na sua entrevista! 🍀
+
