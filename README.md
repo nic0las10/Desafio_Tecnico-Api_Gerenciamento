@@ -1,139 +1,67 @@
-API de Gerenciamento de Tarefas
-Este é um projeto de API para gerenciamento de tarefas (To-Do List) desenvolvido com FastAPI. Ele permite criar, listar, atualizar, visualizar e deletar tarefas. A API também conta com autenticação via JWT e validação de dados.
+# To-Do List API
 
-Configurações do Projeto
-Requisitos
-Python 3.10 ou superior
-Git
-SQLite (incluso no Python)
-Instalação
-Clone o repositório:
+This project is a task management API, developed as part of a technical challenge. The API was built using **FastAPI** and has CRUD functionality to manage tasks, as well as JWT authentication.
 
-bash
-Copiar código
-git clone <URL_DO_SEU_REPOSITORIO>
-cd <NOME_DO_DIRETORIO_DO_PROJETO>
-Crie e ative um ambiente virtual:
+## Main Features
+- Create a new task.
+- List all tasks.
+- Update an existing task.
+- Delete a task.
+- View a specific task by ID.
 
-bash
-Copiar código
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-Instale as dependências:
+## Technologies Used
+- **Python 3.10**
+- **FastAPI**: Framework for building RESTful APIs.
+- **SQLModel**: ORM for database integration.
+- **SQLite**: Relational database.
+- **Uvicorn**: ASGI server to run the application.
+- **Python-dotenv**: Environment variable management.
 
-bash
-Copiar código
-pip install -r requirements.txt
-Inicialize o banco de dados:
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/SEU_USUARIO/Desafio_Tecnico-Api_Gerenciamento.git
+2. Navigate to the project directory:
+   ```bash
+   cd Desafio_Tecnico-Api_Gerenciamento
+3. Create a virtual environment:
+   ```bash
+   python -m venv venv
+4. Activate the virtual environment:
+   - On Windows: `venv\Scripts\activate`
+   - On macOS/Linux: `source venv/bin/activate`
+5. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+6. Create a `.env` file in the root directory and add the following environment variables:
+   ```
+   DATABASE_URL=sqlite:///./database.db
+   JWT_SECRET_KEY=your_secret_key
+   JWT_ALGORITHM=HS256
+7. Start the development server:
+   ```bash
+   uvicorn main:app --reload
 
-bash
-Copiar código
-python -m app.database
-Executando o Projeto
-Execute o servidor:
+## Usage
+Once the server is running, you can access the API documentation at `http://localhost:8000/docs`. The documentation provides information about the available endpoints, request/response schemas, and authentication requirements.
 
-bash
-Copiar código
-uvicorn app.main:app --reload
-Acesse a documentação da API no navegador:
+## API
+The API provides the following endpoints:
 
-Swagger UI: http://127.0.0.1:8000/docs
-Redoc: http://127.0.0.1:8000/redoc
-Endpoints da API
-Autenticação
-POST /login
-Gera um token JWT para autenticação.
-Body:
+- `POST /tasks`: Create a new task.
+- `GET /tasks`: List all tasks.
+- `GET /tasks/{task_id}`: Retrieve a specific task by ID.
+- `PUT /tasks/{task_id}`: Update an existing task.
+- `DELETE /tasks/{task_id}`: Delete a task.
 
-json
-Copiar código
-{
-  "username": "usuario1",
-  "password": "senha123"
-}
-Resposta:
+## Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-json
-Copiar código
-{
-  "access_token": "seu_token_jwt_aqui",
-  "token_type": "bearer"
-}
-Gerenciamento de Tarefas
-POST /tarefas
-Cria uma nova tarefa.
-Headers:
-Authorization: Bearer <seu_token_jwt>
-Body:
+## License
+This project is licensed under the [MIT License](LICENSE).
 
-json
-Copiar código
-{
-  "titulo": "Minha Tarefa",
-  "descricao": "Detalhes da tarefa",
-  "estado": "pendente"
-}
-GET /tarefas
-Lista todas as tarefas.
-Headers:
-Authorization: Bearer <seu_token_jwt>
-
-GET /tarefas/{id}
-Visualiza uma tarefa específica pelo ID.
-Headers:
-Authorization: Bearer <seu_token_jwt>
-
-PUT /tarefas/{id}
-Atualiza uma tarefa existente.
-Headers:
-Authorization: Bearer <seu_token_jwt>
-Body:
-
-json
-Copiar código
-{
-  "titulo": "Tarefa Atualizada",
-  "descricao": "Detalhes atualizados",
-  "estado": "em andamento"
-}
-DELETE /tarefas/{id}
-Deleta uma tarefa existente.
-Headers:
-Authorization: Bearer <seu_token_jwt>
-
-Executando Testes
-Execute os testes unitários com Pytest:
-
-bash
-Copiar código
-pytest
-Certifique-se de que todos os testes passam.
-
-Estrutura do Projeto
-bash
-Copiar código
-Desafio_tecnico/
-│
-├── app/
-│   ├── auth.py              # Lógica de autenticação e geração de JWT
-│   ├── database.py          # Configuração e inicialização do banco de dados
-│   ├── main.py              # Endpoints principais da API
-│   ├── models.py            # Modelos SQLAlchemy e validações com Pydantic
-│
-├── tests/
-│   ├── test_main.py         # Testes unitários para os endpoints
-│
-├── requirements.txt         # Dependências do projeto
-├── README.md                # Documentação do projeto
-Funcionalidades
-Autenticação JWT para proteger os endpoints.
-Validação de dados com Pydantic.
-Suporte a operações CRUD para tarefas.
-Documentação automática com Swagger.
-Possíveis Melhorias
-Implementar filtros e paginação na listagem de tarefas.
-Dockerizar o projeto para facilitar a implantação.
-Adicionar suporte para migrações com Alembic.
-Implementar caching nos endpoints de leitura.
-Desenvolvido por Nícolas de Macedo. 🚀
+## Testing
+To run the tests, execute the following command:
+```bash
+pytest tests/
+```
