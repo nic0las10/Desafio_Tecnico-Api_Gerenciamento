@@ -79,7 +79,7 @@ Cada tarefa contém os seguintes campos:
 6. Inicie o servidor:
     ```bash
     uvicorn app.main:app --reload
-###Acesse a documentação interativa:###
+### **Acesse a documentação interativa:**
 
 -Swagger: http://127.0.0.1:8000/docs
 -Redoc: http://127.0.0.1:8000/redoc
@@ -137,6 +137,7 @@ Filtros e Paginação:
 - Pytest
 - JSON Placeholder
 - FastAPI-Cache
+  
 ---
 
 ## **Licença**
