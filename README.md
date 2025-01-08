@@ -84,7 +84,7 @@ Cada tarefa contém os seguintes campos:
 
 ### **Testes Unitários**
 
-1. ### **Execute### **tes unitários:**
+1. ### **Execute os testes unitários::**
    ```bash
    pytest tests/
    
