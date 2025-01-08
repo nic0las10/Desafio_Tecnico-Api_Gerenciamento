@@ -102,7 +102,7 @@ Cada tarefa contém os seguintes campos:
 ---
 
 ## **Licença**
- -Este projeto está licenciado sob a licença MIT.
+ Este projeto está licenciado sob a licença [MIT](LICENSE). Consulte o arquivo `LICENSE` para obter mais detalhes.
 
 
 
