@@ -38,18 +38,22 @@ Cada tarefa contém os seguintes campos:
 - **FastAPI**: Framework para construção de APIs RESTful.
 - **SQLModel**: ORM para integração com o banco de dados.
 - **SQLite**: Banco de dados leve e eficiente.
+- **Alembic**: Gerenciamento de migrações de banco de dados.
 - **Uvicorn**: Servidor ASGI para rodar a aplicação.
-- **Pytest**: Framework para testes.
+- **Pytest**: Framework para testes unitários.
 - **JWT**: Autenticação segura.
-- **Python-dotenv**: Gerenciamento de variáveis de ambiente.
+- **FastAPI-Cache**: Implementação de caching nos endpoints.
+- **Docker**: Ferramenta de containerização para facilitar o desenvolvimento.
+- **JSON Placeholder**: API pública usada para importar tarefas no crawler.
 
 ---
 
 ## **Instalação e Configuração**
 
 ### **Pré-requisitos**
-- Python 3.10 instalado.
+- Python 3.10 ou superior.
 - Gerenciador de pacotes `pip`.
+- Docker (opcional).
 
 ### **Passos para Configuração**
 1. Clone o repositório:
@@ -75,7 +79,7 @@ Cada tarefa contém os seguintes campos:
 6. Inicie o servidor:
     ```bash
     uvicorn app.main:app --reload
-  Acesse a documentação interativa:
+### **Acesse a documentação interativa:**
 
 -Swagger: http://127.0.0.1:8000/docs
 -Redoc: http://127.0.0.1:8000/redoc
@@ -94,11 +98,52 @@ Cada tarefa contém os seguintes campos:
 
 ---
 
-## **Tecnologias Utilizadas**
-- Utilização de SQLite como banco de dados.
-- Autenticação JWT para proteger os endpoints.
-- Documentação interativa com Swagger e Redoc.
+### **Dockerização**
 
+1. ### **Construa a imagem Docker:**
+   ```bash
+   docker build -t desafio_tecnico:latest .
+   
+2. **Execute o container:**
+   ```bash
+   docker run -d -p 8001:8000 desafio_tecnico:latest
+
+3-   Acesse a API em: http://127.0.0.1:8001.
+
+   
+### **Extras Implementados**
+Filtros e Paginação:
+- Filtros: Permite listar tarefas pelo estado (pendente, em andamento, concluída)..
+- Paginação: Utilize os parâmetros skip e limit para navegar entre os resultados.
+
+ **Crawler**
+- Importa tarefas automaticamente da API pública JSON Placeholder.
+- As tarefas importadas são verificadas para evitar duplicatas.
+
+
+### **Caching**
+O caching foi implementado nos endpoints de leitura para otimizar o desempenho e reduzir o tempo de resposta das requisições. 
+
+#### **Configuração**
+- **Cache no endpoint `/tarefas/{id}`**:
+  - Expira em 30 segundos.
+  - Armazena o resultado da requisição para uma tarefa específica pelo ID.
+- **Cache no endpoint `/tarefas`**:
+  - Expira em 60 segundos.
+  - Armazena a lista de tarefas, incluindo possíveis filtros e paginação.
+
+---
+
+## **Referências**
+
+- [FastAPI](https://fastapi.tiangolo.com/) - Framework utilizado para a construção de APIs rápidas e modernas.
+- [SQLModel](https://sqlmodel.tiangolo.com/) - ORM utilizado para gerenciar o banco de dados relacional de maneira eficiente.
+- [Alembic](https://alembic.sqlalchemy.org/) - Ferramenta para gerenciamento de migrações de banco de dados.
+- [Pytest](https://pytest.org/) - Framework para a criação de testes unitários abrangentes.
+- [JSON Placeholder](https://jsonplaceholder.typicode.com/) - API pública utilizada no crawler para importar dados fictícios de tarefas.
+- [FastAPI-Cache](https://fastapi-cache.tiangolo.com/) - Biblioteca para implementação de caching nos endpoints da API.
+
+  
 ---
 
 ## **Licença**

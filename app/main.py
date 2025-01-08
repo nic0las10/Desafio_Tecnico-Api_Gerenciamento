@@ -15,6 +15,7 @@ from fastapi_cache.decorator import cache
 # URL da API pública
 URL = "https://jsonplaceholder.typicode.com/todos"
 
+
 # Função lifespan substituindo o método @app.on_event
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,6 +25,7 @@ async def lifespan(app: FastAPI):
 
 # Inicializando a aplicação com o lifespan
 app = FastAPI(lifespan=lifespan)
+
 
 # Simulação de um "banco de dados" para usuários
 fake_users_db = {
@@ -44,6 +46,7 @@ def autenticar_usuario(username: str, password: str):
         return None
     return user
 
+
 # Endpoint de login
 @app.post("/login")
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -57,13 +60,14 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     token = criar_token_acesso({"sub": user["username"]})
     return {"access_token": token, "token_type": "bearer"}
 
+
 # Endpoint para listar todas as tarefas com filtros e paginação (Protegido)
 @app.get("/tarefas", response_model=list[Tarefa])
 @cache(expire=60)  # Cache configurado para expirar em 60 segundos
 def listar_tarefas(
     estado: Optional[str] = Query(
         None,
-        pattern="^(pendente|em andamento|concluída)$",  # Substituí regex por pattern
+        pattern="^(pendente|em andamento|concluída)$",  
         description="Filtrar tarefas pelo estado ('pendente', 'em andamento', 'concluída')"
     ),
     skip: int = Query(0, ge=0, description="Número de tarefas a pular para paginação"),
