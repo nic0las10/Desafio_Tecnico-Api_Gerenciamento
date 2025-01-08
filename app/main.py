@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, Query
 from sqlmodel import Session, select
 from app.database import engine, init_db
 from app.models import Tarefa, TarefaBase
@@ -6,13 +6,11 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.auth import criar_token_acesso, verificar_senha, gerar_hash_senha
 from contextlib import asynccontextmanager
 from datetime import datetime
-from fastapi import Query
 from typing import Optional
 import requests
-from sqlmodel import Session
-from app.database import engine
-from app.models import Tarefa
-
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from fastapi_cache.decorator import cache
 
 # URL da API pública
 URL = "https://jsonplaceholder.typicode.com/todos"
@@ -21,6 +19,7 @@ URL = "https://jsonplaceholder.typicode.com/todos"
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()  # Inicializar o banco de dados
+    FastAPICache.init(InMemoryBackend(), prefix="fastapi-cache")  # Configuração do cache
     yield  # Aqui pode ser usado para finalizar recursos, se necessário
 
 # Inicializando a aplicação com o lifespan
@@ -45,9 +44,6 @@ def autenticar_usuario(username: str, password: str):
         return None
     return user
 
-
-
-
 # Endpoint de login
 @app.post("/login")
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -63,10 +59,11 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 # Endpoint para listar todas as tarefas com filtros e paginação (Protegido)
 @app.get("/tarefas", response_model=list[Tarefa])
+@cache(expire=60)  # Cache configurado para expirar em 60 segundos
 def listar_tarefas(
     estado: Optional[str] = Query(
         None,
-        regex="^(pendente|em andamento|concluída)$",
+        pattern="^(pendente|em andamento|concluída)$",  # Substituí regex por pattern
         description="Filtrar tarefas pelo estado ('pendente', 'em andamento', 'concluída')"
     ),
     skip: int = Query(0, ge=0, description="Número de tarefas a pular para paginação"),
@@ -104,6 +101,7 @@ def criar_tarefa(tarefa: TarefaBase, token: str = Depends(oauth2_scheme)):
 
 # Endpoint para obter uma tarefa pelo ID (Protegido)
 @app.get("/tarefas/{id}", response_model=Tarefa)
+@cache(expire=30)  # Cache configurado para expirar em 30 segundos
 def obter_tarefa(id: int, token: str = Depends(oauth2_scheme)):
     with Session(engine) as session:
         tarefa = session.get(Tarefa, id)
@@ -166,15 +164,10 @@ def buscar_tarefas_externas():
     else:
         print(f"Erro ao buscar tarefas: {response.status_code}")
 
-# Testando o crawler
-if __name__ == "__main__":
-    buscar_tarefas_externas()
-
-if __name__ == "__main__":
-    buscar_tarefas_externas()
-
-
-
 @app.get("/")
 def read_root():
     return {"message": "Bem-vindo à API de Gerenciamento de Tarefas"}
+
+if __name__ == "__main__":
+    buscar_tarefas_externas()
+
