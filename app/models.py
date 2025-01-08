@@ -1,7 +1,8 @@
 from typing import Optional
 from datetime import datetime
-from sqlmodel import Field, SQLModel
+from sqlmodel import SQLModel, Field
 from enum import Enum
+from pydantic import ConfigDict  # Substitui a Config antiga
 
 
 # Enum para os valores permitidos do campo "estado"
@@ -11,10 +12,18 @@ class EstadoTarefa(str, Enum):
     concluida = "concluída"
 
 
-class Tarefa(SQLModel, table=True):
+# Base do modelo de tarefa
+class TarefaBase(SQLModel):
+    titulo: str
+    descricao: Optional[str] = None  # Campo opcional
+    estado: EstadoTarefa  # Usa o Enum para validar os valores permitidos
+    data_criacao: datetime = Field(default_factory=datetime.utcnow)  # Adicionado valor padrão
+    data_atualizacao: datetime = Field(default_factory=datetime.utcnow)  # Adicionado valor padrão
+
+
+# Modelo completo da tabela de tarefas
+class Tarefa(TarefaBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    titulo: str = Field(max_length=255)  # Título obrigatório
-    descricao: Optional[str] = None  # Descrição opcional
-    estado: EstadoTarefa = Field(default=EstadoTarefa.pendente)  # Estado com valores limitados
-    data_criacao: datetime = Field(default_factory=datetime.utcnow)  # Gerado automaticamente
-    data_atualizacao: datetime = Field(default_factory=datetime.utcnow)  # Atualizado automaticamente
+
+    # Configuração para evitar redefinições da tabela
+    model_config = ConfigDict(table_args={"extend_existing": True})
