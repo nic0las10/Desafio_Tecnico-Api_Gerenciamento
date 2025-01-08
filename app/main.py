@@ -6,6 +6,9 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.auth import criar_token_acesso, verificar_senha, gerar_hash_senha
 from contextlib import asynccontextmanager
 from datetime import datetime
+from fastapi import Query
+from typing import Optional
+
 
 
 # Função lifespan substituindo o método @app.on_event
@@ -52,11 +55,29 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     token = criar_token_acesso({"sub": user["username"]})
     return {"access_token": token, "token_type": "bearer"}
 
-# Endpoint para listar todas as tarefas (Protegido)
+# Endpoint para listar todas as tarefas com filtros e paginação (Protegido)
 @app.get("/tarefas", response_model=list[Tarefa])
-def listar_tarefas(token: str = Depends(oauth2_scheme)):
+def listar_tarefas(
+    estado: Optional[str] = Query(
+        None,
+        regex="^(pendente|em andamento|concluída)$",
+        description="Filtrar tarefas pelo estado ('pendente', 'em andamento', 'concluída')"
+    ),
+    skip: int = Query(0, ge=0, description="Número de tarefas a pular para paginação"),
+    limit: int = Query(10, ge=1, le=100, description="Número máximo de tarefas a retornar (máximo: 100)"),
+    token: str = Depends(oauth2_scheme)
+):
+    """Lista tarefas com suporte a filtros por estado e paginação."""
     with Session(engine) as session:
-        tarefas = session.exec(select(Tarefa)).all()
+        # Base da consulta
+        query = select(Tarefa)
+
+        # Aplicar filtro por estado, se fornecido
+        if estado:
+            query = query.where(Tarefa.estado == estado)
+
+        # Adicionar paginação
+        tarefas = session.exec(query.offset(skip).limit(limit)).all()
         return tarefas
 
 # Endpoint para criar uma nova tarefa (Protegido)
