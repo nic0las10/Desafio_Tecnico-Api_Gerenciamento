@@ -134,15 +134,15 @@ O caching foi implementado nos endpoints de leitura para otimizar o desempenho e
 
 ---
 
-### **Referências**
-- Filtros: Permite listar tarefas pelo estado (pendente, em andamento, concluída)..
-- Paginação: Utilize os parâmetros skip e limit para navegar entre os resultados.
-- FastAPI
-- SQLModel
-- Alembic
-- Pytest
-- JSON Placeholder
-- FastAPI-Cache
+## **Referências**
+
+- [FastAPI](https://fastapi.tiangolo.com/) - Framework utilizado para a construção de APIs rápidas e modernas.
+- [SQLModel](https://sqlmodel.tiangolo.com/) - ORM utilizado para gerenciar o banco de dados relacional de maneira eficiente.
+- [Alembic](https://alembic.sqlalchemy.org/) - Ferramenta para gerenciamento de migrações de banco de dados.
+- [Pytest](https://pytest.org/) - Framework para a criação de testes unitários abrangentes.
+- [JSON Placeholder](https://jsonplaceholder.typicode.com/) - API pública utilizada no crawler para importar dados fictícios de tarefas.
+- [FastAPI-Cache](https://fastapi-cache.tiangolo.com/) - Biblioteca para implementação de caching nos endpoints da API.
+
   
 ---
 
