@@ -121,10 +121,16 @@ Filtros e Paginação:
 - As tarefas importadas são verificadas para evitar duplicatas.
 
 
-## **Caching**
--Implementado em endpoints de leitura para melhorar o desempenho.
--Cache em /tarefas/{id}: expira em 30 segundos.
--Cache em /tarefas: expira em 60 segundos
+### **Caching**
+O caching foi implementado nos endpoints de leitura para otimizar o desempenho e reduzir o tempo de resposta das requisições. 
+
+#### **Configuração**
+- **Cache no endpoint `/tarefas/{id}`**:
+  - Expira em 30 segundos.
+  - Armazena o resultado da requisição para uma tarefa específica pelo ID.
+- **Cache no endpoint `/tarefas`**:
+  - Expira em 60 segundos.
+  - Armazena a lista de tarefas, incluindo possíveis filtros e paginação.
 
 ---
 
