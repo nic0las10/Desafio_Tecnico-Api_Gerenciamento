@@ -38,18 +38,22 @@ Cada tarefa contém os seguintes campos:
 - **FastAPI**: Framework para construção de APIs RESTful.
 - **SQLModel**: ORM para integração com o banco de dados.
 - **SQLite**: Banco de dados leve e eficiente.
+- **Alembic**: Gerenciamento de migrações de banco de dados.
 - **Uvicorn**: Servidor ASGI para rodar a aplicação.
-- **Pytest**: Framework para testes.
+- **Pytest**: Framework para testes unitários.
 - **JWT**: Autenticação segura.
-- **Python-dotenv**: Gerenciamento de variáveis de ambiente.
+- **FastAPI-Cache**: Implementação de caching nos endpoints.
+- **Docker**: Ferramenta de containerização para facilitar o desenvolvimento.
+- **JSON Placeholder**: API pública usada para importar tarefas no crawler.
 
 ---
 
 ## **Instalação e Configuração**
 
 ### **Pré-requisitos**
-- Python 3.10 instalado.
+- Python 3.10 ou superior.
 - Gerenciador de pacotes `pip`.
+- Docker (opcional).
 
 ### **Passos para Configuração**
 1. Clone o repositório:
@@ -94,11 +98,47 @@ Cada tarefa contém os seguintes campos:
 
 ---
 
-## **Tecnologias Utilizadas**
-- Utilização de SQLite como banco de dados.
-- Autenticação JWT para proteger os endpoints.
-- Documentação interativa com Swagger e Redoc.
+### **Dockerização**
 
+1. ### **Construa a imagem Docker:**
+   ```bash
+   docker build -t desafio_tecnico:latest .
+   
+2. **Execute o container:**
+   ```bash
+   docker run -d -p 8001:8000 desafio_tecnico:latest
+   Acesse a API em: http://127.0.0.1:8001.
+
+3-   Acesse a API em: http://127.0.0.1:8001.
+
+   
+### **Extras Implementados**
+Filtros e Paginação:
+- Filtros: Permite listar tarefas pelo estado (pendente, em andamento, concluída)..
+- Paginação: Utilize os parâmetros skip e limit para navegar entre os resultados.
+
+ Crawler:
+- Importa tarefas automaticamente da API pública JSON Placeholder.
+- As tarefas importadas são verificadas para evitar duplicatas.
+
+
+Caching
+- Implementado em endpoints de leitura para melhorar o desempenho.
+Configuração:
+  -Cache em /tarefas/{id}: expira em 30 segundos.
+  -Cache em /tarefas: expira em 60 segundos
+
+---
+
+### **Referências**
+- Filtros: Permite listar tarefas pelo estado (pendente, em andamento, concluída)..
+- Paginação: Utilize os parâmetros skip e limit para navegar entre os resultados.
+- FastAPI
+- SQLModel
+- Alembic
+- Pytest
+- JSON Placeholder
+- FastAPI-Cache
 ---
 
 ## **Licença**
