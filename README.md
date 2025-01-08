@@ -107,7 +107,6 @@ Cada tarefa contém os seguintes campos:
 2. **Execute o container:**
    ```bash
    docker run -d -p 8001:8000 desafio_tecnico:latest
-   Acesse a API em: http://127.0.0.1:8001.
 
 3-   Acesse a API em: http://127.0.0.1:8001.
 
@@ -117,12 +116,12 @@ Filtros e Paginação:
 - Filtros: Permite listar tarefas pelo estado (pendente, em andamento, concluída)..
 - Paginação: Utilize os parâmetros skip e limit para navegar entre os resultados.
 
- Crawler:
+ **Crawler**
 - Importa tarefas automaticamente da API pública JSON Placeholder.
 - As tarefas importadas são verificadas para evitar duplicatas.
 
 
-Caching
+**Caching**
 - Implementado em endpoints de leitura para melhorar o desempenho.
 Configuração:
   -Cache em /tarefas/{id}: expira em 30 segundos.
