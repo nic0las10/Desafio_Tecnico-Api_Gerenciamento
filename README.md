@@ -82,47 +82,23 @@ Cada tarefa contém os seguintes campos:
 
 ---
 
-## **Estrutura do Projeto**
-
-```bash
-Desafio_Tecnico-Api_Gerenciamento/
-│
-├── app/
-│   ├── __init__.py        # Inicialização do módulo
-│   ├── main.py            # Entrypoint da aplicação
-│   ├── auth.py            # Funções de autenticação (JWT)
-│   ├── database.py        # Configuração do banco de dados
-│   ├── models.py          # Modelos SQLAlchemy/SQLModel
-│   ├── schemas.py         # Schemas para validação (Pydantic)
-│
-├── tests/                 # Testes unitários com Pytest
-│   ├── test_tarefas.py
-│
-├── .env                   # Variáveis de ambiente
-├── requirements.txt       # Dependências do projeto
-├── README.md              # Documentação do projeto
-└── database.db            # Banco de dados SQLite
-
-
----
-
-## **Testes Unitários**
+### **Testes Unitários**
 
 1. Execute os testes unitários:
    ```bash
    pytest tests/
-2. O que os testes cobrem:
    
--CRUD das tarefas (criação, leitura, atualização, exclusão).
--Autenticação JWT.
+2. O que os testes cobrem:
+   -CRUD das tarefas (criação, leitura, atualização, exclusão).
+   -Autenticação JWT.
 
 ---
 
-## **Requisitos Opcionais Implementados**
-
-- **Documentação interativa com Swagger e Redoc.
+## **Tecnologias Utilizadas**
+- Utilização de SQLite como banco de dados.
 - Autenticação JWT para proteger os endpoints.
--Utilização de SQLite como banco de dados.
+- Documentação interativa com Swagger e Redoc.
+
 
 
 ---
