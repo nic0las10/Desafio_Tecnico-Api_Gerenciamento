@@ -84,14 +84,14 @@ Cada tarefa contém os seguintes campos:
 
 ### **Testes Unitários**
 
-1. ### **Execute os testes unitários::**
+1. ### **Execute os testes unitários:**
    ```bash
    pytest tests/
    
-2.### **O que os testes cobrem:**
+2. **O que os testes cobrem:**
 - CRUD das tarefas (criação, leitura, atualização, exclusão).
 - Autenticação JWT.
-- 
+  
 ---
 
 ## **Tecnologias Utilizadas**
