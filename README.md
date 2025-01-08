@@ -91,7 +91,7 @@ Cada tarefa contém os seguintes campos:
 2. **O que os testes cobrem:**
 - CRUD das tarefas (criação, leitura, atualização, exclusão).
 - Autenticação JWT.
-  
+
 ---
 
 ## **Tecnologias Utilizadas**
@@ -99,13 +99,10 @@ Cada tarefa contém os seguintes campos:
 - Autenticação JWT para proteger os endpoints.
 - Documentação interativa com Swagger e Redoc.
 
-
-
 ---
 
 ## **Licença**
-
-   -Este projeto está licenciado sob a licença MIT.
+ -Este projeto está licenciado sob a licença MIT.
 
 
 
