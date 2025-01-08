@@ -79,7 +79,7 @@ Cada tarefa contém os seguintes campos:
 6. Inicie o servidor:
     ```bash
     uvicorn app.main:app --reload
-  Acesse a documentação interativa:
+**Acesse a documentação interativa:**
 
 -Swagger: http://127.0.0.1:8000/docs
 -Redoc: http://127.0.0.1:8000/redoc
@@ -123,9 +123,9 @@ Filtros e Paginação:
 
 **Caching**
 - Implementado em endpoints de leitura para melhorar o desempenho.
-Configuração:
-  -Cache em /tarefas/{id}: expira em 30 segundos.
-  -Cache em /tarefas: expira em 60 segundos
+*Configuração*:
+-Cache em /tarefas/{id}: expira em 30 segundos.
+-Cache em /tarefas: expira em 60 segundos
 
 ---
 
