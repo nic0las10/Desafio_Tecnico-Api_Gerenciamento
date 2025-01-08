@@ -121,7 +121,7 @@ Filtros e Paginação:
 - As tarefas importadas são verificadas para evitar duplicatas.
 
 
-**Caching**
+## **Caching**
 -Implementado em endpoints de leitura para melhorar o desempenho.
 -Cache em /tarefas/{id}: expira em 30 segundos.
 -Cache em /tarefas: expira em 60 segundos
